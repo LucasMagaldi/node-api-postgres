@@ -1,0 +1,7 @@
+import { app } from './app';
+import { env } from './env';
+
+app.listen({
+    port: env.PORT,
+    host: '0.0.0.0'
+}).then(() => console.log(`HTTP Server is Running in: ${env.NODE_ENV} mode & under PORT: ${env.PORT}`));
