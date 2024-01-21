@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  api-solid-pg:
+    image: postgres
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=apisolid
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=password
