@@ -20,7 +20,7 @@ export async function register (request: FastifyRequest, response: FastifyReply)
         await usersService.register({name, email, password});
     } catch (error: unknown) {
         if(error instanceof userAlreadyExistsError) return response.status(409).send({ message: error.message});
-        return response.status(500).send();
+        throw error;
     }
 
     return response.status(201).send();
