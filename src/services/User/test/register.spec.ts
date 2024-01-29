@@ -1,12 +1,19 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { UserService } from '../index';
 import { compare } from 'bcryptjs';
 import { InMemoryUsersRepository } from '../../../repositories/in-memory/in-memory-users-repository';
 import { userAlreadyExistsError } from '../../../services/Errors/userAlreadyExist';
 
+let usersRepository: InMemoryUsersRepository;
+let sut: UserService;
+
 describe('Register use case - service', () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new UserService(usersRepository);
+
+    beforeEach(() => {
+        usersRepository = new InMemoryUsersRepository();
+        sut = new UserService(usersRepository);
+    });
+    
 
     it('should hash user password upon registration' , async () => {
         const { user } = await sut.register({

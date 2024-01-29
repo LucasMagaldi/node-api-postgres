@@ -2,7 +2,7 @@ import { userAlreadyExistsError } from '../Errors/userAlreadyExist';
 import { usersRepository } from '../Entities/usersRepository';
 import { compare, hash } from 'bcryptjs';
 import { User } from '@prisma/client';
-import { InValidCredentials } from '../Errors/invalidCredentials';
+import { InValidCredentials } from '../Errors/InvalidCredentials';
 
 interface RegisterServiceRequest {
     name: string;
