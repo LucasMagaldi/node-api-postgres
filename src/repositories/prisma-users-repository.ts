@@ -3,6 +3,7 @@ import { prisma }  from '../connectors/prisma';
 import { Prisma } from '@prisma/client';
 
 export class PrismaUsersRepository implements usersRepository {
+    
     async create(data: Prisma.UserCreateInput) {
         const user = await prisma.user.create({
             data,
