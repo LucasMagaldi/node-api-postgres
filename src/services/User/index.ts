@@ -1,7 +1,8 @@
 import { userAlreadyExistsError } from '../Errors/userAlreadyExist';
 import { usersRepository } from '../Entities/usersRepository';
-import { hash } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 import { User } from '@prisma/client';
+import { InValidCredentials } from '../Errors/invalidCredentials';
 
 interface RegisterServiceRequest {
     name: string;
@@ -11,6 +12,17 @@ interface RegisterServiceRequest {
 
 interface RegisterServiceResponse {
     user: User
+}
+
+interface AuthenticationServiceRequest {
+    email: string;
+    password: string;
+}
+
+interface AuthenticationServiceResponse {
+    user_name: string;
+    user_email: string;
+    user_id: string;
 }
 
 
@@ -32,6 +44,21 @@ export class UserService {
 
         return {
             user
+        }
+    }
+
+    async authentication ({ email, password }: AuthenticationServiceRequest) : Promise<AuthenticationServiceResponse> {
+        const user = await this.usersRepository.findByEmail(email);
+
+        if(!user) throw new InValidCredentials();
+
+        const doesPasswordMatch = await compare(password, user.password);
+        if(!doesPasswordMatch) throw new InValidCredentials();
+
+        return {
+            user_id: user.id,
+            user_email: user.email,
+            user_name: user.name
         }
     }
 }
