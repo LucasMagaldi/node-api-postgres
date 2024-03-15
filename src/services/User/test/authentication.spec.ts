@@ -3,7 +3,7 @@ import { UserService } from '../index';
 import { InMemoryUsersRepository } from '../../../repositories/in-memory/in-memory-users-repository';
 
 let usersRepository: InMemoryUsersRepository;
-let sut: UserService;
+let sut: UserService; // System under test
 
 describe('Authenticate use case - service', () => {
 

@@ -1,4 +1,4 @@
-import { usersRepository } from '../services/Entities/usersRepository';
+import { usersRepository } from '../Entities/usersRepository';
 import { prisma }  from '../connectors/prisma';
 import { Prisma } from '@prisma/client';
 

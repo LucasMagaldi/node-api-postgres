@@ -1,5 +1,5 @@
 import { userAlreadyExistsError } from '../Errors/userAlreadyExist';
-import { usersRepository } from '../Entities/usersRepository';
+import { usersRepository } from '../../Entities/usersRepository';
 import { compare, hash } from 'bcryptjs';
 import { User } from '@prisma/client';
 import { InValidCredentials } from '../Errors/InvalidCredentials';
